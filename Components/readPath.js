@@ -1,22 +1,23 @@
 const fs = require('fs');
 const path = require("path");
-const readFile = require('./realFile');
+const readFile = require('./readFile.js');
 
-const readDirectory = (pathName) => {
+
+const readPath = (pathName) => {
     let buildDir = [];
     let readDirect = fs.readdirSync(pathName);
       readDirect.forEach((element)=>{ 
-        let routePath = path.join(pathName, element);
+         let routePath = path.resolve(path.join(pathName, element));
           readFile(routePath);
           let statPathName = fs.statSync(routePath);
             if(statPathName.isDirectory()){
-              readDirectory(routePath, buildDir);//recursividad!!
+              readPath(routePath, buildDir);//recursividad!!
             }else if(statPathName.isFile()){
               buildDir.push(routePath);
             }
       })
     }
 
-
-    module.exports = readDirectory;
+   
+    module.exports = readPath;
 
