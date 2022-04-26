@@ -5,6 +5,7 @@
 const colors = require('colors');
 const path = require('path');
 const fs = require('fs');
+const fetch = require('node-fetch');
 
 const mdLinksPath = (file) => {
 console.log('*************************************PATH***********************************************'.magenta);

@@ -3,6 +3,7 @@ const path = require("path");
 const readFile = require('./readFile.js');
 
 
+
 const readPath = (pathName) => {
     let buildDir = [];
     let readDirect = fs.readdirSync(pathName);

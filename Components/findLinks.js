@@ -1,36 +1,27 @@
 const path = require('path');
 const fs = require('fs');
-const readPath = require('./readPath.js');
+const validateLinks = require('./validateLinks.js');
+const { url } = require('inspector');
 
 
-const findLinks = (readContentFile, routePath) => {
-    //console.log(readContentFile, routePath);
-    let arrayContentOutput = [];
-    arrayContentOutput.push(readContentFile);
-    //console.log(arrayContentOutput);
-    //const findMdLinks = /\[([^\[]+)\](\(.*\))/
-      const findMdLinks = /\[(?<text>.+)\]\((?<url>[^ ]+)\)/
-    const mdFileContents = readContentFile
-    const matchesLink = mdFileContents.match(findMdLinks);
-    //console.log(matchesLink[1]);
+function findLinks(readContentFile, routePath){
+ let findMdLinks = /[^!]\[.+?\]\(.+?\)/g
+const mdFileContents = readContentFile
+const matchesLink = mdFileContents.match(findMdLinks);//object
+  return   matchesLink.forEach((element) => {
+    let validateUrl = element.match(/https*?:([^"')\s]+)/) ;
+    let validatetext = element.match(/\[(?<text>.+)\]/);
+    if(validateUrl != null){
     let arrayOutput={
-        "href": matchesLink[2],
-        "text": matchesLink[1],
-        "file": routePath,
-    };
-    console.log(arrayOutput); 
-  
+    "href": validateUrl[0],
+    "text": validatetext[1],
+    "file": routePath,
+    }; 
+    console.log(arrayOutput);
+    }
+});
 
-    /*  const singleMatch = /\[([^\[]+)\]\((.*)\)/
-    for (let i = 0; i < matchesLink.length; i++) {
-    let text = singleMatch.exec(matchesLink[i]) 
-     
-    //console.log(`Match #${i}:`, text)
-    console.log(`text: ${text[1]}`)
-    console.log(`link: ${text[2]}`) 
-    console.log('file:', routePath); */
-    
-} 
+}
 
 
 
