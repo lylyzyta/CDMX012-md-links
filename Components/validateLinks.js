@@ -1,16 +1,20 @@
+const path = require('path');
+const fs = require('fs');
  const https = require('https');
+const colors = require('colors');
 
 
 function validateLinks(arrayOutput){
-  console.log(arrayOutput);} 
-
-/* https.get('https://nodejs.org/api/http.html#class-httpclientrequest/', function(res) {
-  console.log("statusCode: ", res.statusCode);
-  console.log("prueba: ", res.statusMessage);
+  https.get(arrayOutput.href, function(res) {
+  let arrayOuputStatus={
+  ...arrayOutput,
+  "statusCode": res.statusCode,
+  "message": res.statusMessage,
+  }
+  console.log('********************************************************'.magenta);
+  console.log(arrayOuputStatus);
 }).on('error', function(e) {
   console.error(e);
-}); */
-
-
-
-module.export = validateLinks;
+});
+}
+module.exports = validateLinks;

@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node components/mdLinks.js"
+    "start": "node components/mdLinks"
   },
   "repository": {
     "type": "git",
@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/lylyzyta/CDMX012-md-links#readme",
   "dependencies": {
+    "colors": "^1.4.0",
     "node-fetch": "^3.2.3"
   }
 }
