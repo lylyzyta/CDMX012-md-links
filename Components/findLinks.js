@@ -8,6 +8,7 @@
         let findMdLinks = /[^!]\[.+?\]\(.+?\)/g
         let arrayOutput=[];
         const mdFileContents = readContentFile
+        //console.log(readContentFile);
         const matchesLink = mdFileContents.match(findMdLinks);//saco todos los []con url
             matchesLink.forEach((element) => {
             let validateUrl = element.match(/https*?:([^"')\s]+)/) ;//saco http y https

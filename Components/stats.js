@@ -24,20 +24,20 @@ const color = require("colors")
 
 function stats(arrayOutput) {
   let arrayhref = arrayOutput.map(element => element.href)
-   console.log(arrayhref)
   
+  arrayOutput.forEach(element => {
+     https.get(arrayhref.toString(), function(res) {
    
-    https.get(arrayOutput, function(res) {
-    let arrayOuputStatus={
-    ...arrayOutput,
+     let arrayOutputStatus = {
+    ...element,
     "statusCode": res.statusCode,
     "message": res.statusMessage,
     }
-    console.log('********************************************************'.magenta);
-    console.log(arrayOuputStatus);
+    
+    console.log(arrayOutputStatus);
   }).on('error', function(e) {
     console.error(e);
-  });
-  }
+  });});
+  } 
  
 module.exports = stats;
