@@ -17,3 +17,27 @@
   }
   
   module.exports = {stats, brokenLinks} */
+
+const https = require("https");
+const axios = require("axios").default;
+const color = require("colors")
+
+function stats(arrayOutput) {
+  let arrayhref = arrayOutput.map(element => element.href)
+   console.log(arrayhref)
+  
+   
+    https.get(arrayOutput, function(res) {
+    let arrayOuputStatus={
+    ...arrayOutput,
+    "statusCode": res.statusCode,
+    "message": res.statusMessage,
+    }
+    console.log('********************************************************'.magenta);
+    console.log(arrayOuputStatus);
+  }).on('error', function(e) {
+    console.error(e);
+  });
+  }
+ 
+module.exports = stats;

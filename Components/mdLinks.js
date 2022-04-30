@@ -5,6 +5,7 @@ const readPath = require("./readPath.js");
 const readFile = require("./readFile.js");
 const findLinks = require("./findLinks.js");
 const validateLinks = require("./validateLinks.js");
+const stats = require("./stats.js")
 
 const pathName = process.argv[2];
 const options = process.argv[3];
@@ -24,7 +25,8 @@ function miPromesa() {
              return resolve(arrayOutNoOptions); //ok no options
           } else if(options === '--validate') {
             arrayOutNoOptions = (findLinks(readFileName, element));
-            return resolve(validateLinks(arrayOutNoOptions)); 
+            arrayValidate = stats(arrayOutNoOptions)
+            //return resolve(stats(arrayOutNoOptions)); 
            //arrayOutValidate.push(validateLinks(arrayOutNoOptions));
             //let validatestatusLinks = validateLinks(arrayOutValidate);
             //return resolve(arrayOutValidate);
