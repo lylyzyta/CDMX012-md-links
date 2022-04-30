@@ -1,6 +1,5 @@
 const fs = require('fs');
 const path = require('path');
-const readFile = require('./readFile.js');
 
 
 function readPath(pathName){
@@ -9,15 +8,16 @@ function readPath(pathName){
   let readDirect = fs.readdirSync(pathName);
   readDirect.forEach((element)=>{ 
     routePath = path.resolve(path.join(pathName, element));
-    readFile(routePath);
+    //console.log('en readPath', routePath);
     let statPathName = fs.statSync(routePath);
     if(statPathName.isDirectory()){
-      readPath(routePath);//recursividad!!
+      readPath(routePath).forEach((element)=>{
+        buildDir.push(element)});//recursividad!!
     }else if(statPathName.isFile()){
-        buildDir.push(routePath);
-      }
+      buildDir.push(routePath);
+    }
   })
-   
-}   
+  return buildDir;
+} 
 module.exports = readPath;
 

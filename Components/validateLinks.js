@@ -1,20 +1,39 @@
-const path = require('path');
-const fs = require('fs');
- const https = require('https');
-const colors = require('colors');
+const axios = require("axios").default;
+const https = require("https");
 
+function validateLinks(arrayOutput) {
+  //let arrayOuputStatus = [];
+  let linksFiles = [];
+  arrayOutput.forEach((element) => {
+    linksFiles.push(element.href);
+  });
 
-function validateLinks(arrayOutput){
   https.get(arrayOutput.href, function(res) {
-  let arrayOuputStatus={
-  ...arrayOutput,
-  "statusCode": res.statusCode,
-  "message": res.statusMessage,
-  }
-  console.log('********************************************************'.magenta);
-  console.log(arrayOuputStatus);
-}).on('error', function(e) {
-  console.error(e);
-});
+    //.then((res) => {
+      let arrayOuputStatus = {
+        ...arrayOutput,
+        status: res.statusCode,
+        OK: "OK",
+      };
+      console.log(arrayOuputStatus);});
+    //}) //.then
+
+   /*  .catch((err) => {
+      if (err.response) {
+        let arrayOuputStatus = {
+          ...arrayOutput,
+          status: err.response.status,
+          ok: "fail",
+        };
+        return arrayOuputStatus;
+      } else {
+        let arrayOuputStatus = {
+          ...arrayOutput,
+          status: "Deprecated",
+          ok: "fail",
+        };
+        return arrayOuputStatus;
+      }
+    }); */
 }
 module.exports = validateLinks;

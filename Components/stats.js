@@ -1,7 +1,7 @@
 
 
 
-function stats(linksObj){
+/* function stats(linksObj){
     let unique = [...new Set(linksObj.map(item => item.href))];
     return unique;
   }
@@ -16,4 +16,4 @@ function stats(linksObj){
     }) 
   }
   
-  module.exports = {stats, brokenLinks}
+  module.exports = {stats, brokenLinks} */
