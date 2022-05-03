@@ -1,30 +1,31 @@
-    const path = require('path');
-    const fs = require('fs');
-    const validateLinks = require('./validateLinks.js');
-    const { url } = require('inspector');
+function findLinks(readContentFile, routePath) {
+  // console.log("soy findLinks", readContentFile)
+  let contentObject = [];
+  let i = 0;
+  do {
+    let findMdLinks = /[^!]\[.+?\]\(.+?\)/g;
     
-    
-    function findLinks(readContentFile, routePath){
-        let findMdLinks = /[^!]\[.+?\]\(.+?\)/g
-        let arrayOutput=[];
-        const mdFileContents = readContentFile
-        //console.log(readContentFile);
-        const matchesLink = mdFileContents.match(findMdLinks);//saco todos los []con url
-            matchesLink.forEach((element) => {
-            let validateUrl = element.match(/https*?:([^"')\s]+)/) ;//saco http y https
-            let validatetext = element.match(/\[(?<text>.+)\]/);//saco texto
-            if(validateUrl != null){
-            arrayOutput.push({
-            "href": validateUrl[0],
-            "text": validatetext[1],
-            "file": routePath,
-            })
-            }
-        }); 
-    return arrayOutput
-    }
+    const matchesLink = readContentFile[i].match(findMdLinks); //saco todos los []con url
+    i++;
+    //console.log(matchesLink);
+    //matchesLink.forEach((element) => {
+    let z = 0;
+    do {
+      let validateUrl = matchesLink[z].match(/https*?:([^"')\s]+)/); //saco http y https
+      let validatetext = matchesLink[z].match(/\[(?<text>.+)\]/); //saco texto
+      let arrayOutput = {
+        href: validateUrl[0],
+        text: validatetext[1],
+        //"file": routePath[i],
+      };
+      contentObject.push(arrayOutput); 
+      
 
-   
-  
+      z++;
+    } while (z < matchesLink.length);
+  } while (i < readContentFile.length);
+  return (contentObject);
+  //return(arrayOutput);
+}
 
 module.exports = findLinks;

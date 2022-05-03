@@ -1,39 +1,42 @@
 const axios = require("axios").default;
-const https = require("https");
+const https = require('https');
+
 
 function validateLinks(arrayOutput) {
-  //let arrayOuputStatus = [];
-  let linksFiles = [];
-  arrayOutput.forEach((element) => {
-    linksFiles.push(element.href);
-  });
-
-  https.get(arrayOutput.href, function(res) {
-    //.then((res) => {
-      let arrayOuputStatus = {
-        ...arrayOutput,
-        status: res.statusCode,
-        OK: "OK",
-      };
-      console.log(arrayOuputStatus);});
-    //}) //.then
-
-   /*  .catch((err) => {
-      if (err.response) {
-        let arrayOuputStatus = {
-          ...arrayOutput,
-          status: err.response.status,
-          ok: "fail",
-        };
-        return arrayOuputStatus;
-      } else {
-        let arrayOuputStatus = {
-          ...arrayOutput,
-          status: "Deprecated",
-          ok: "fail",
-        };
-        return arrayOuputStatus;
-      }
-    }); */
+    let contentObjectValidate = [];
+    let i = 0;
+    do {
+       return axios
+      .get(arrayOutput.href)
+        .then((response) => {
+            const arrayOutputStatus = {
+               ...arrayOutput,
+                statusCode: response.status,
+                OK: response.statusText,
+            }
+            return arrayOutputStatus;
+        
+        })
+        .catch(err => {
+          if (err.response) {
+            const arrayOutputStatus = {
+                ...arrayOutput,
+              'status': err.response.status,
+              'ok': 'fail',
+            }
+            return arrayOutputStatus;
+          } else {
+            const arrayOutputStatus = {
+                ...arrayOutput,
+              'status': 'Deprecated',
+              'ok': 'fail',
+            }
+            return arrayOutputStatus;
+          }
+        });
+         i++
+     }while (i < arrayOutput.length)
+  
 }
+
 module.exports = validateLinks;

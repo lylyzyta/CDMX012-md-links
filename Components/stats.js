@@ -18,26 +18,26 @@
   
   module.exports = {stats, brokenLinks} */
 
-const https = require("https");
-const axios = require("axios").default;
-const color = require("colors")
+  function stats(objValidateLinks) {
+    console.log(objValidateLinks);} 
+ /*    let arrayhref = (arrayOutputStatus.map((element) => element.href));
+      arrayOutputStatus.forEach((element) => {
+        arrayhref = element.href;
+        //let arrayUnique = 
+             let ObjOutputStats = {
+             Total: arrayhref.length,
+              }
 
-function stats(arrayOutput) {
-  let arrayhref = arrayOutput.map(element => element.href)
-  
-  arrayOutput.forEach(element => {
-     https.get(arrayhref.toString(), function(res) {
+              console.count(arrayhref);      
    
-     let arrayOutputStatus = {
-    ...element,
-    "statusCode": res.statusCode,
-    "message": res.statusMessage,
-    }
-    
-    console.log(arrayOutputStatus);
-  }).on('error', function(e) {
-    console.error(e);
-  });});
-  } 
- 
-module.exports = stats;
+      })
+   
+   } */ 
+
+
+   module.exports = stats;
+
+ // $ md-links ./some/example.md --stats
+//  Total: 3
+//  Unique: 3
+  

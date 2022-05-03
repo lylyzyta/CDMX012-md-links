@@ -1,23 +1,27 @@
-const fs = require('fs');
-const path = require('path');
+const fs = require("fs");
+const path = require("path");
 
-
-function readPath(pathName){
-  let routePath;
-  let buildDir = [];
+let buildDir = [];
+function readPath(pathName) {
   let readDirect = fs.readdirSync(pathName);
-  readDirect.forEach((element)=>{ 
-    routePath = path.resolve(path.join(pathName, element));
-    //console.log('en readPath', routePath);
-    let statPathName = fs.statSync(routePath);
-    if(statPathName.isDirectory()){
-      readPath(routePath).forEach((element)=>{
-        buildDir.push(element)});//recursividad!!
-    }else if(statPathName.isFile()){
+  readDirect.forEach((element) => {
+    let extnamePath = path.extname(element);
+    if (extnamePath === ".md") {
+      let routePath = path.resolve(path.join(pathName, element));
       buildDir.push(routePath);
+    } else if (extnamePath != ".md") {
+      let routePathDirectory = path.resolve(path.join(pathName, element));
+      resolveDirectory(routePathDirectory);
     }
-  })
+  }); 
   return buildDir;
-} 
-module.exports = readPath;
+}
 
+function resolveDirectory(routePath) {
+  let statPathName = fs.statSync(routePath);
+  if (statPathName.isDirectory()) {
+    readPath(routePath).forEach((element) => {}); //recursividad!!
+  }
+}
+
+module.exports = readPath;
