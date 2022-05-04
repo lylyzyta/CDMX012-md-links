@@ -33,6 +33,7 @@ function validateLinks(arrayOutput) {
             }
             return arrayOutputStatus;
           }
+         
         });
          i++
      }while (i < arrayOutput.length)

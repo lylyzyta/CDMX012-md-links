@@ -13,7 +13,7 @@ p.then(function(mensaje){
     console.log(error)
 })
 
-function miPromesa(){
+function mdLinks(){
     return new Promise(function(resolve, reject){
     let suma = 2 + 6;
     if (suma === 8){
@@ -24,13 +24,13 @@ function miPromesa(){
 });
 }
 
-miPromesa().then(function(mensaje){
+mdLinks().then(function(mensaje){
     console.log(mensaje)
 }).catch(function(error){
     console.log(error)
 }) */
 
-/* function miPromesa(){
+/* function mdLinks(){
     return new Promise(function(resolve, reject){
     let isHomeworkDone = false; 
     if (isHomeworkDone === true){ //si hago mi tarea
@@ -45,7 +45,7 @@ miPromesa().then(function(mensaje){
 });
 }
 
-miPromesa().then(function(mensaje){
+mdLinks().then(function(mensaje){
     console.log(mensaje)
 }).catch(function(error){
     console.log(error)
@@ -56,7 +56,7 @@ const options = process.argv[2];
 
 
 
- function miPromesa(){
+ function mdLinks(){
     return new Promise(function(resolve, reject){
       if (options === false){ //si hago mi tarea
         let arrayOutput={
@@ -81,7 +81,7 @@ const options = process.argv[2];
 });
 }
 
-miPromesa(process.argv[2]).then(function(mensaje){
+mdLinks(process.argv[2]).then(function(mensaje){
     console.log(mensaje)
 }).catch(function(error){
     console.log(error)
