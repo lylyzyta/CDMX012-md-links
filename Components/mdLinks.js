@@ -37,7 +37,7 @@ function mdLinks() {
         let findLinksFiles = findLinks(readAllFiles);
         let UniqueLinks = unique(findLinksFiles);
         return resolve ("Total: "+ findLinksFiles.length + " " + "Unique: " + UniqueLinks);
-    }else if (options === '--validate' && options === '--stats') {
+    }else if (options === '--ultima') {
       let readPathName = readPath(pathName);
       let readAllFiles = readFile(readPathName);
       let findLinksFiles = findLinks(readAllFiles);

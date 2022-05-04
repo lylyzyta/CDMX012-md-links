@@ -8,7 +8,7 @@ console.log(process.argv[2])
   mdLinks(process.argv[2], false, false)
   .then(function (mensaje) {
     console.log(mensaje);
-    console.log("soy stats y validate false");
+    //console.log("soy stats y validate false");
   })
   .catch(function (error) {
     console.log(error);
@@ -18,7 +18,7 @@ console.log(process.argv[2])
   mdLinks(process.argv[2], true, false)
   .then(function (mensaje) {
     console.log(mensaje);
-    console.log("soy validate true")
+    //console.log("soy validate true")
     
   })
   .catch(function (error) {
@@ -28,7 +28,7 @@ console.log(process.argv[2])
   mdLinks(process.argv[2], false, true)
   .then(function (mensaje) {
     console.log(mensaje);
-    console.log("soy stats true ")
+    //console.log("soy stats true ")
     
   })
   .catch(function (error) {
@@ -38,7 +38,7 @@ console.log(process.argv[2])
   mdLinks(process.argv[2], true, true )
   .then(function (mensaje) {
     console.log(mensaje);
-    console.log("soy validate y stats true ")
+    //console.log("soy validate y stats true ")
     
   })
   .catch(function (error) {
