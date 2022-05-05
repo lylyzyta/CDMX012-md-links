@@ -1,9 +1,6 @@
 const axios = require("axios").default;
-const https = require('https');
-
 
 function validateLinks(arrayOutput) {
-    let contentObjectValidate = [];
     let i = 0;
     do {
        return axios
@@ -33,11 +30,15 @@ function validateLinks(arrayOutput) {
             }
             return arrayOutputStatus;
           }
+
          
         });
-         i++
+        return resolve(Promise.all(validateLinksFiles)); 
+
+        i++
      }while (i < arrayOutput.length)
-  
+     
+
 }
 
 module.exports = validateLinks;

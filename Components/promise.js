@@ -30,7 +30,7 @@ mdLinks().then(function(mensaje){
     console.log(error)
 }) */
 
-/* function mdLinks(){
+ function mdLinks(){
     return new Promise(function(resolve, reject){
     let isHomeworkDone = false; 
     if (isHomeworkDone === true){ //si hago mi tarea
@@ -49,7 +49,7 @@ mdLinks().then(function(mensaje){
     console.log(mensaje)
 }).catch(function(error){
     console.log(error)
-})  */
+})  
 
 const pathName = process.argv[0];
 const options = process.argv[2];
