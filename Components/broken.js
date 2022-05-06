@@ -1,28 +1,16 @@
-const axios = require("axios").default;
-
+const https = require("https");
 function broken(arrayOutput) {
-   let i = 0;
-    do {
-       return axios
-       .get(arrayOutput.href)
-          .catch(function (error) {
-          if (error.response) {
-           //console.log(error.response.data);
-     return ((error.response.status));
-      //console.log(error.response.headers);
-    } else if (error.request) {
-      //console.log(error.request);
-    } else {
-      //console.log('Error', error.message);
-    }
-    //console.log(error.config);
-  });
+  let containerBroken = [];
+  let i = 0;
+  do {
+    let arrayBroken = [];
+    https.get(arrayOutput[i].href, (res) => {
+      if (res.statusCode > 399) {
+        let respBroken = res.statusCode;
+      }
+    });
 
-        i++
-      }while (i < arrayOutput.length)
-      
-    }  
-    Promise.resolve(broken)
-
-
+    i++;
+  } while (i < arrayOutput.length);
+}
 module.exports = broken;

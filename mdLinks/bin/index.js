@@ -23,7 +23,7 @@ const argv = yargs(hideBin(process.argv)).argv
 } else if(argv.validate && !argv.stats){
   mdLinks()
   .then(function (mensaje) {
-    console.log(mensaje);
+    console.log('index', mensaje);
   })
   .catch(function (error) {
     console.log(error);

@@ -1,11 +1,11 @@
 function findLinks(readContentFile, routePath) {
-  
   let contentObject = [];
   let i = 0;
   do {
     let findMdLinks = /[^!]\[.+?\]\(.+?\)/g;
 
     const matchesLink = readContentFile[i].match(findMdLinks); //saco todos los []con url
+    const fileRoutePath = routePath[i];
     i++;
     let z = 0;
     do {
@@ -14,7 +14,7 @@ function findLinks(readContentFile, routePath) {
       let arrayOutput = {
         href: validateUrl[0],
         text: validatetext[1],
-        file: 'matchesLinks',
+        file: fileRoutePath,
       };
       contentObject.push(arrayOutput);
 
