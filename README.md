@@ -37,7 +37,7 @@ Para el diseño y la implementación de la herramienta se llevó acabo un plan d
 
 Se creó un diagrama de flujo.
 
-![Diagrama de Flujo](./img/image.JPG)
+![Diagrama de Flujo](./img/image.png)
 
 
 ## 3. Implementación
