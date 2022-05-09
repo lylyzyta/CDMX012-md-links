@@ -14,13 +14,6 @@ const options2 = process.argv[4];
 
 function mdLinks() {
   return new Promise((resolve, reject) => {
-    let pathExtension = path.extname(pathName);
-    if (pathExtension === ".md") {
-      let container = [];
-      let resolvePath = path.resolve(path.join(pathName));
-      container.push(resolvePath);
-      let readUniqueFile = fs.readFileSync(path.resolve(pathName), "utf-8");
-    } else {
       let readPathName = readPath(pathName);
       let readAllFiles = readFile(readPathName);
       let findLinksFiles = findLinks(readAllFiles, readPathName);
@@ -44,7 +37,7 @@ function mdLinks() {
               '3'
               //brokenLinks.ok
          );  
-         //resolve (brokenLinks)
+       
        
       } else if (options1 === "--validate") {
         resolve(Promise.all(validateLinksFiles));
@@ -56,7 +49,7 @@ function mdLinks() {
         resolve(findLinksFiles);
       
       }
-    } reject("Error")
+     reject("Error")
   });
 }
 
