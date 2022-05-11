@@ -14,42 +14,33 @@ const options2 = process.argv[4];
 
 function mdLinks() {
   return new Promise((resolve, reject) => {
-      let readPathName = readPath(pathName);
-      let readAllFiles = readFile(readPathName);
-      let findLinksFiles = findLinks(readAllFiles, readPathName);
-      let UniqueLinks = unique(findLinksFiles);
-      let validateLinksFiles = findLinksFiles.map((element) =>
-      validateLinks(element));
-     //let brokenLinks = Promise.all(validateLinksFiles)
-   // let brokenLinks = findLinksFiles.map((element) =>
-    //broken(element));
-   //console.log(brokenLinks);
-     
-      if (options1 && options2 ) {
-          resolve(
-            "Total: " +
-              findLinksFiles.length +
-              " " +
-              "Unique: " +
-              UniqueLinks +
-              " " +
-              "Broken: " +
-              '3'
-              //brokenLinks.ok
-         );  
-       
-       
-      } else if (options1 === "--validate") {
-        resolve(Promise.all(validateLinksFiles));
-      } else if (options1 === "--stats") {
-        resolve(
-          "Total: " + findLinksFiles.length + " " + "Unique: " + UniqueLinks
-        );
-      } else if (!options1 && !options2) {
-        resolve(findLinksFiles);
-      
-      }
-     reject("Error")
+    let readPathName = readPath(pathName);
+    let readAllFiles = readFile(readPathName);
+    let findLinksFiles = findLinks(readAllFiles, readPathName);
+    let UniqueLinks = unique(findLinksFiles);
+    let validateLinksFiles = validateLinks(findLinksFiles);
+
+    if (options1 && options2) {
+      resolve(
+        "Total: " +
+          findLinksFiles.length +
+          " " +
+          "Unique: " +
+          UniqueLinks +
+          " " +
+          "Broken: " +
+          "3"
+      );
+    } else if (options1 === "--validate") {
+      resolve(validateLinksFiles);
+    } else if (options1 === "--stats") {
+      resolve(
+        "Total: " + findLinksFiles.length + " " + "Unique: " + UniqueLinks
+      );
+    } else if (!options1 && !options2) {
+      resolve(findLinksFiles);
+    }
+    reject("Error");
   });
 }
 
